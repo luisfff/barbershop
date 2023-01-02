@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/BarberShop/BarberShop.Domain/bin/Debug/net7.0
+/BarberShop/BarberShop.Domain/obj
+/BarberShop/BarberShop.Application/bin/Debug/net7.0
+/BarberShop/BarberShop.Api/bin/Debug/net7.0
+/BarberShop/.vs/BarberShop/FileContentIndex
+/BarberShop/.vs/BarberShop/v17
+/BarberShop/.vs/BarberShop/DesignTimeBuild
+/BarberShop/.vs/ProjectEvaluation
+/BarberShop/BarberShop.Api/obj
+/BarberShop/BarberShop.Application/obj
+/BarberShop/BarberShop.Infrastructure/bin/Debug/net7.0
+/BarberShop/BarberShop.Infrastructure/obj/Debug/net7.0
+/BarberShop/BarberShop.Infrastructure/obj
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/.vs/barbershop
