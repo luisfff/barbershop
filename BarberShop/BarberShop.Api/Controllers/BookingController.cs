@@ -1,4 +1,4 @@
-using BarberShop.Application.Handlers;
+using BarberShop.Application.Handlers.Booking;
 using BarberShop.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,8 +29,9 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> Create(BookingInputModel model)
+        public async Task<IActionResult> Create([FromServices] CreateBookingHandler handler, BookingInputModel model)
         {
+            await handler.Handle(model);
             return Ok();
         }
 

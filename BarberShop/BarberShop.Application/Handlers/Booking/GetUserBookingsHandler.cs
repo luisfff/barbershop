@@ -1,7 +1,7 @@
 ﻿using BarberShop.Application.Interfaces;
 using BarberShop.Application.Models;
 
-namespace BarberShop.Application.Handlers
+namespace BarberShop.Application.Handlers.Booking
 {
     public class GetUserBookingsHandler
     {
