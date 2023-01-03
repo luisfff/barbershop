@@ -1,6 +1,6 @@
 ﻿using BarberShop.Application.Events;
 using BarberShop.Application.Models;
-using BarberShop.Application.Producer;
+using BarberShop.Common;
 
 namespace BarberShop.Application.Handlers.Booking
 {

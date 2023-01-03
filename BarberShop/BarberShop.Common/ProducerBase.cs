@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 
-namespace BarberShop.Application.Producer
+namespace BarberShop.Common
 {
     public interface IRabbitMqProducer<in T>
     {

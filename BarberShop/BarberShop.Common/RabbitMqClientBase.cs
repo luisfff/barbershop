@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
-namespace BarberShop.Application.Producer
+namespace BarberShop.Common
 {
     public abstract class RabbitMqClientBase : IDisposable
     {

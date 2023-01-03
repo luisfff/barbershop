@@ -5,11 +5,21 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Api", "BarberShop.Api\BarberShop.Api.csproj", "{9ABCC0A7-F87F-4978-9DB6-66A6BE072A72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.Application", "BarberShop.Application\BarberShop.Application.csproj", "{00DDB1CC-61F1-440F-8EFD-40EEF55CFAE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Application", "BarberShop.Application\BarberShop.Application.csproj", "{00DDB1CC-61F1-440F-8EFD-40EEF55CFAE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.Infrastructure", "BarberShop.Infrastructure\BarberShop.Infrastructure.csproj", "{6304625F-0C71-41CF-A3D0-BE009D1BDCA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Infrastructure", "BarberShop.Infrastructure\BarberShop.Infrastructure.csproj", "{6304625F-0C71-41CF-A3D0-BE009D1BDCA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.Domain", "BarberShop.Domain\BarberShop.Domain.csproj", "{EEBDCA08-9748-40D6-8819-211B4AFEE671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Domain", "BarberShop.Domain\BarberShop.Domain.csproj", "{EEBDCA08-9748-40D6-8819-211B4AFEE671}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker", "BarberShopWorker\BarberShopWorker.csproj", "{7B79D974-37F3-40FA-B84B-147C17BEACD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker.Infrastructure", "BarberShopWorker.Infrastructure\BarberShopWorker.Infrastructure.csproj", "{38DA0D15-C2BE-4418-9E0A-025AD312CA7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker.Application", "BarberShopWorker.Application\BarberShopWorker.Application.csproj", "{7D6679B4-9526-40E7-A5AF-4A4E0E7A8A6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker.Domain", "BarberShopWorker.Domain\BarberShopWorker.Domain.csproj", "{98A373A9-D972-4C9B-8BD8-BFD68CADD46F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.Common", "BarberShop.Common\BarberShop.Common.csproj", "{51A40EB6-4D11-47D4-8BF1-B6F312477188}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +43,26 @@ Global
 		{EEBDCA08-9748-40D6-8819-211B4AFEE671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEBDCA08-9748-40D6-8819-211B4AFEE671}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEBDCA08-9748-40D6-8819-211B4AFEE671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B79D974-37F3-40FA-B84B-147C17BEACD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B79D974-37F3-40FA-B84B-147C17BEACD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B79D974-37F3-40FA-B84B-147C17BEACD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B79D974-37F3-40FA-B84B-147C17BEACD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38DA0D15-C2BE-4418-9E0A-025AD312CA7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38DA0D15-C2BE-4418-9E0A-025AD312CA7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38DA0D15-C2BE-4418-9E0A-025AD312CA7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38DA0D15-C2BE-4418-9E0A-025AD312CA7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D6679B4-9526-40E7-A5AF-4A4E0E7A8A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D6679B4-9526-40E7-A5AF-4A4E0E7A8A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D6679B4-9526-40E7-A5AF-4A4E0E7A8A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D6679B4-9526-40E7-A5AF-4A4E0E7A8A6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A373A9-D972-4C9B-8BD8-BFD68CADD46F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A373A9-D972-4C9B-8BD8-BFD68CADD46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A373A9-D972-4C9B-8BD8-BFD68CADD46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A373A9-D972-4C9B-8BD8-BFD68CADD46F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A40EB6-4D11-47D4-8BF1-B6F312477188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A40EB6-4D11-47D4-8BF1-B6F312477188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A40EB6-4D11-47D4-8BF1-B6F312477188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A40EB6-4D11-47D4-8BF1-B6F312477188}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
