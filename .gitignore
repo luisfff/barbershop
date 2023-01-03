@@ -19,3 +19,16 @@
 /.vs/slnx.sqlite
 /.vs/ProjectSettings.json
 /.vs/barbershop
+/BarberShop/BarberShop.Common/bin/Debug/net7.0
+/BarberShop/BarberShop.Common/obj/Debug/net7.0
+/BarberShop/BarberShop.Common/obj/BarberShop.Common.csproj.nuget.dgspec.json
+/BarberShop/BarberShop.Common/obj
+/BarberShop/BarberShopWorker/bin/Debug/net7.0
+/BarberShop/BarberShopWorker/obj
+/BarberShop/BarberShopWorker.Application/bin/Debug/net7.0
+/BarberShop/BarberShopWorker.Application/obj
+/BarberShop/BarberShopWorker.Domain/bin/Debug/net7.0
+/BarberShop/BarberShopWorker.Application/BarberShopWorker.Application.csproj
+/BarberShop/BarberShopWorker.Domain/obj/Debug/net7.0
+/BarberShop/BarberShopWorker.Domain/obj
+/BarberShop/BarberShopWorker.Infrastructure/obj
