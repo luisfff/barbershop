@@ -1,0 +1,72 @@
+version: "3.2"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    environment:
+      rabbitmq_default_user: guest
+      rabbitmq_default_pass: guest
+    container_name: 'rabbitmq'
+    ports:
+        # AMQP protocol port
+        - 5672:5672
+        # HTTP management UI
+        - 15672:15672
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+    volumes:
+        - ./rabbitmq/etc/definitions.json:/etc/rabbitmq/definitions.json
+        - ./rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - library_net
+  cache:
+      container_name: 'cache'
+      image: redis:6.2-alpine
+      restart: always
+      ports:
+        - '6379:6379'
+      command: redis-server --save 20 1 --loglevel warning
+      volumes: 
+        - cache:/data
+      networks:
+        - barbershop_net
+  api:
+      container_name: 'barbershop-domain-api'
+      ports:
+        - 502:80
+        - 5002:443
+      build:
+        context: ./
+        dockerfile: BarberShop.Api/Dockerfile
+      image: barbershop-api
+      restart: on-failure
+      depends_on:
+        - rabbitmq
+        - cache
+      networks:
+        - barbershop_net
+  worker:
+    container_name: 'barbershop-worker'
+    build:
+      context: ./
+      dockerfile: BarberShopWorker/Dockerfile
+    image: barbershop-worker
+    restart: on-failure
+    command:
+     - '/bin/sh'
+     - '-c'
+     - '/bin/sleep 20 && /prog "first argument"'
+    depends_on:
+      - rabbitmq
+    networks:
+      - barbershop_net
+networks:
+  library_net:
+    driver: bridge
+volumes:
+  cache:
+    driver: local

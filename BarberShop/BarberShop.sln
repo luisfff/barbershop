@@ -21,7 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShopWorker.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Common", "BarberShop.Common\BarberShop.Common.csproj", "{51A40EB6-4D11-47D4-8BF1-B6F312477188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.DependencyInjection", "BarberShop.DependencyInjection\BarberShop.DependencyInjection.csproj", "{8E1E41EA-CF93-45D7-B2D6-FDCAF7257D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.DependencyInjection", "BarberShop.DependencyInjection\BarberShop.DependencyInjection.csproj", "{8E1E41EA-CF93-45D7-B2D6-FDCAF7257D97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E91CAFF3-2507-47D6-B193-0302B22911E0}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
