@@ -24,8 +24,7 @@ namespace BarberShop.Common
         private void ConnectToRabbitMq()
         {
             if (_connection == null || _connection.IsOpen == false)
-            {
-                _connection = _connectionFactory.CreateConnection();
+            {_connection = _connectionFactory.CreateConnection();
             }
 
             if (Channel == null || Channel.IsOpen == false)

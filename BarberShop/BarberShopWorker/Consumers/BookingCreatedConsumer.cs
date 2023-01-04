@@ -7,11 +7,11 @@ using RabbitMQ.Client.Events;
 
 namespace BarberShopWorker.Consumers
 {
-    public class BookCreatedConsumer : ConsumerBase, IHostedService
+    public class BookingCreatedConsumer : ConsumerBase, IHostedService
     {
         protected override string QueueName => "barbershop.booking.created";
 
-        public BookCreatedConsumer(
+        public BookingCreatedConsumer(
             IMediator mediator,
             ConnectionFactory connectionFactory) :
             base(mediator, connectionFactory)

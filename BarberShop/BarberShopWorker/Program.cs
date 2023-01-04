@@ -1,8 +1,9 @@
 using BarberShopWorker;
 using RabbitMQ.Client;
 using System.Reflection;
-using MediatR;
+using BarberShopWorker.Configuration;
 using BarberShopWorker.Infrastructure.Context;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 IHost host = Host
@@ -11,9 +12,10 @@ IHost host = Host
     {
         services
             .AddHostedService<Worker>()
-           // .AddMediatR(Assembly.GetExecutingAssembly())
-            //.AddConsumers()
-            //.AddHandlers()
+            .AddMediatR(Assembly.GetExecutingAssembly())
+            .AddConsumers()
+            .AddHandlers()
+            .AddRepositories()
             .AddSingleton(serviceProvider =>
             {
                 var connectionFactory = new ConnectionFactory()
