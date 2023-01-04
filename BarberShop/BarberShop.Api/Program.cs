@@ -25,11 +25,11 @@ builder.Services
         return connectionFactory;
     });
 
-//builder.Services.AddStackExchangeRedisCache(options =>
-//{
-//    options.Configuration = builder.Configuration.GetSection("RedisConnection").GetSection("RedisCache").Value;
-//    options.InstanceName = "redis";
-//});
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetSection("RedisConnection").GetSection("RedisCache").Value;
+    options.InstanceName = "redis";
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
