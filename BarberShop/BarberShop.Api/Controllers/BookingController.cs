@@ -35,7 +35,7 @@ namespace BarberShop.Api.Controllers
             return Ok();
         }
 
-        [HttpPost()]
+        [HttpPut()]
         public async Task<IActionResult> Update(BookingInputModel model)
         {
             return Ok();

@@ -2,6 +2,7 @@
 using AutoMapper;
 
 using BarberShop.Application.Models;
+using BarberShop.Domain.Interfaces;
 
 namespace BarberShop.Application.Services
 {
@@ -10,7 +11,7 @@ namespace BarberShop.Application.Services
         private readonly IBookingRepository _bookingRepository;
         private readonly IMapper _mapper;
 
-        private BookingQueryService(IBookingRepository bookingRepository, IMapper mapper)
+        public BookingQueryService(IBookingRepository bookingRepository, IMapper mapper)
         {
             _bookingRepository = bookingRepository;
             _mapper = mapper;

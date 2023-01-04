@@ -1,5 +1,6 @@
 ﻿using BarberShop.Domain.Interfaces;
 using BarberShop.Domain.Models;
+using BarberShop.Infrastructure.Connection;
 using Dapper;
 
 namespace BarberShop.Infrastructure.Repositories
@@ -12,7 +13,7 @@ namespace BarberShop.Infrastructure.Repositories
         {
             _connectionProvider = connectionProvider;
         }
-        public async Task<Booking> Get(int id)
+        public async Task<Booking> Get(long id)
         {
             using var connection = _connectionProvider.GetConnection();
 
@@ -30,7 +31,7 @@ namespace BarberShop.Infrastructure.Repositories
            return booking;
         }
 
-        public async Task<IEnumerable<Booking>> GetByUserId(int userId)
+        public async Task<IEnumerable<Booking>> GetByUserId(long userId)
         {
             using var connection = _connectionProvider.GetConnection();
 

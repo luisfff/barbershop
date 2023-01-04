@@ -1,40 +1,36 @@
 ﻿
-
+using Microsoft.EntityFrameworkCore;
 using BarberShopWorker.Domain;
 using BarberShopWorker.Domain.Models;
+using BarberShopWorker.Infrastructure.Context;
+using BarberShopWorker.Infrastructure.Entities;
 
 namespace BarberShopWorker.Infrastructure.Repositories
 {
     public class BookingRepository : IBookingRepository
     {
-        private readonly IConnectionProvider _connectionProvider;
+        private readonly IDbContextFactory<BarberShopContext> _context;
 
-        public BookingRepository(IConnectionProvider connectionProvider)
+        public BookingRepository(IDbContextFactory<BarberShopContext> context)
         {
-            _connectionProvider = connectionProvider;
+            _context = context;
         }
         public async Task<Booking> Create(Booking booking)
         {
-            using var connection = _connectionProvider.GetConnection();
+            await using var ctx = await _context.CreateDbContextAsync();
 
-            var query = @"SELECT * FROM Booking AS b WHERE b.Id = @id";
-
-            var bookingDto = await connection.QuerySingleAsync<BookingDto>(query, id);
-
-            var booking = new Booking
+            var bookingEntity = new BookingEntity
             {
-                Id = bookingDto.Id,
-                UserId = bookingDto.UserId,
-                BookingDateTime = bookingDto.BookingDateTime
+                Id = booking.Id,
+                UserId = booking.UserId,
+                BookingDateTime = booking.BookingDateTime
             };
 
-           return booking;
+            ctx.Add(bookingEntity);
+
+            await ctx.SaveChangesAsync();
+
+            return booking;
         }
-
-
-
-
-        private record BookingDto(long Id, long UserId, DateTime BookingDateTime);
-
     }
 }

@@ -11,15 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Domain", "BarberShop.Domain\BarberShop.Domain.csproj", "{EEBDCA08-9748-40D6-8819-211B4AFEE671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker", "BarberShopWorker\BarberShopWorker.csproj", "{7B79D974-37F3-40FA-B84B-147C17BEACD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShopWorker", "BarberShopWorker\BarberShopWorker.csproj", "{7B79D974-37F3-40FA-B84B-147C17BEACD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker.Infrastructure", "BarberShopWorker.Infrastructure\BarberShopWorker.Infrastructure.csproj", "{38DA0D15-C2BE-4418-9E0A-025AD312CA7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShopWorker.Infrastructure", "BarberShopWorker.Infrastructure\BarberShopWorker.Infrastructure.csproj", "{38DA0D15-C2BE-4418-9E0A-025AD312CA7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker.Application", "BarberShopWorker.Application\BarberShopWorker.Application.csproj", "{7D6679B4-9526-40E7-A5AF-4A4E0E7A8A6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShopWorker.Application", "BarberShopWorker.Application\BarberShopWorker.Application.csproj", "{7D6679B4-9526-40E7-A5AF-4A4E0E7A8A6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShopWorker.Domain", "BarberShopWorker.Domain\BarberShopWorker.Domain.csproj", "{98A373A9-D972-4C9B-8BD8-BFD68CADD46F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShopWorker.Domain", "BarberShopWorker.Domain\BarberShopWorker.Domain.csproj", "{98A373A9-D972-4C9B-8BD8-BFD68CADD46F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.Common", "BarberShop.Common\BarberShop.Common.csproj", "{51A40EB6-4D11-47D4-8BF1-B6F312477188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Common", "BarberShop.Common\BarberShop.Common.csproj", "{51A40EB6-4D11-47D4-8BF1-B6F312477188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.DependencyInjection", "BarberShop.DependencyInjection\BarberShop.DependencyInjection.csproj", "{8E1E41EA-CF93-45D7-B2D6-FDCAF7257D97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{51A40EB6-4D11-47D4-8BF1-B6F312477188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51A40EB6-4D11-47D4-8BF1-B6F312477188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51A40EB6-4D11-47D4-8BF1-B6F312477188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E1E41EA-CF93-45D7-B2D6-FDCAF7257D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E1E41EA-CF93-45D7-B2D6-FDCAF7257D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E1E41EA-CF93-45D7-B2D6-FDCAF7257D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1E41EA-CF93-45D7-B2D6-FDCAF7257D97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

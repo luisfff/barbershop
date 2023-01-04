@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace BarberShop.Infrastructure
+namespace BarberShop.Infrastructure.Connection
 {
     public interface IConnectionProvider
     {
