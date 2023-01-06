@@ -22,7 +22,7 @@ services:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
-        - library_net
+        - barbershop_net
   cache:
       container_name: 'cache'
       image: redis:6.2-alpine
@@ -65,7 +65,7 @@ services:
     networks:
       - barbershop_net
 networks:
-  library_net:
+  barbershop_net:
     driver: bridge
 volumes:
   cache:
