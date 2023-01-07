@@ -12,15 +12,12 @@ services:
         # HTTP management UI
         - 15672:15672
     healthcheck:
-        test: ["CMD", "curl", "-f", "http://rabbitmq:15672"]
+        test: ["CMD", "rabbitmqctl", "node_health_check"]
         interval: 30s
         timeout: 10s
         retries: 5
     volumes:
-        - ./rabbitmq/etc/definitions.json:/etc/rabbitmq/definitions.json
-        - ./rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - /var/lib/rabbitmq:/var/lib/rabbitmq
     networks:
         - barbershop_net
   cache:

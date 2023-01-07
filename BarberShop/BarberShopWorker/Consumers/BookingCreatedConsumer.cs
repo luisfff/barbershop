@@ -8,7 +8,7 @@ namespace BarberShopWorker.Consumers
 {
     public class BookingCreatedConsumer : ConsumerBase, IHostedService
     {
-        protected override string QueueName => "barbershop.booking.created";
+        protected override string QueueName => "Barbershop.booking.created";
 
         public BookingCreatedConsumer(
             IMediator mediator,

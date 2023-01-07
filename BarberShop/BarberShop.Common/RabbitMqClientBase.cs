@@ -5,7 +5,7 @@ namespace BarberShop.Common
 {
     public abstract class RabbitMqClientBase : IDisposable
     {
-        private const string VirtualHost = "Library";
+        private const string VirtualHost = "Barbershop";
         private readonly string ExchangeName = $"{VirtualHost}.LoggerExchange";
         private readonly string Queue = $"{VirtualHost}.logger";
         private const string RoutingKeyName = "logger";

@@ -11,9 +11,9 @@ namespace BarberShop.Application.Services.Producers
             base(connectionFactory)
         {
         }
-        protected override string ExchangeName => "barbershop.BookingExchange";
+        protected override string ExchangeName => "Barbershop.BookingExchange";
 
-        protected override string Queue => "barbershop.booking.created";
+        protected override string Queue => "Barbershop.booking.created";
         protected override string RoutingKeyName => "booking.created";
         protected override string AppId => "BookingProducer";
     }
