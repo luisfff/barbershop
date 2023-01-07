@@ -5,13 +5,14 @@ using BarberShopWorker.Configuration;
 using BarberShopWorker.Infrastructure.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using BarberShopWorker.Consumers;
 
 IHost host = Host
     .CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
         services
-            .AddHostedService<Worker>()
+            .AddHostedService<BookingCreatedConsumer>()
             .AddMediatR(Assembly.GetExecutingAssembly())
             .AddConsumers()
             .AddHandlers()
@@ -25,7 +26,8 @@ IHost host = Host
                     Password = hostContext.Configuration.GetSection("RabbitMqConnection").GetSection("Password").Value,
                     VirtualHost = "/",
                     AutomaticRecoveryEnabled = true,
-                    RequestedHeartbeat = new TimeSpan(60)
+                    RequestedHeartbeat = new TimeSpan(60),
+                    DispatchConsumersAsync = true
                 };
 
                 return connectionFactory;

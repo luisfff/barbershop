@@ -19,7 +19,6 @@ namespace BarberShopWorker.Consumers
             var consumer = new AsyncEventingBasicConsumer(Channel);
             consumer.Received += OnEventReceived<BookingCreateCommand>;
             Channel.BasicConsume(queue: QueueName, autoAck: false, consumer: consumer);
-
         }
 
         public virtual Task StartAsync(CancellationToken cancellationToken) => Task.CompletedTask;

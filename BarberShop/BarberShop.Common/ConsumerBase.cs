@@ -10,7 +10,6 @@ namespace BarberShop.Common
     public abstract class ConsumerBase : RabbitMqClientBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<ConsumerBase> _logger;
         protected abstract string QueueName { get; }
 
         public ConsumerBase(
@@ -32,12 +31,19 @@ namespace BarberShop.Common
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex, "Error while retrieving message from queue.");
             }
             finally
             {
                 Channel.BasicAck(@event.DeliveryTag, false);
             }
+        }
+
+        public virtual Task StartAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        public virtual Task StopAsync(CancellationToken cancellationToken)
+        {
+            Dispose();
+            return Task.CompletedTask;
         }
     }
 }
