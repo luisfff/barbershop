@@ -12,7 +12,6 @@ IHost host = Host
     .ConfigureServices((hostContext, services) =>
     {
         services
-            .AddHostedService<BookingCreatedConsumer>()
             .AddMediatR(Assembly.GetExecutingAssembly())
             .AddConsumers()
             .AddHandlers()

@@ -1,5 +1,10 @@
 ﻿using BarberShopWorker.Infrastructure.Entities;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Sqlite;
 
 namespace BarberShopWorker.Infrastructure.Context
 {
@@ -11,16 +16,28 @@ namespace BarberShopWorker.Infrastructure.Context
         }
 
         public DbSet<BookingEntity> Bookings { get; set; }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite("Data Source=mydatabase.db");
+        //}
     }
 
     public class BarberShopContextFactory : IDbContextFactory<BarberShopContext>
     {
         public BarberShopContext CreateDbContext()
         {
-            // Configure DbContext options and return a new instance of the context
             var optionsBuilder = new DbContextOptionsBuilder<BarberShopContext>();
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
+
+         //   optionsBuilder.UseSqlite(@"Data Source=barbershop.sqlite;Pooling=true;");
+
+            optionsBuilder.UseSqlite("Data Source=barbershop.db");
             return new BarberShopContext(optionsBuilder.Options);
+
+          //  var conn = new SqliteConnection(@"Data Source=barbershop.sqlite;Pooling=true;");
+  
+            //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
+            //return new BarberShopContext(optionsBuilder.Options);
         }
     }
 }
