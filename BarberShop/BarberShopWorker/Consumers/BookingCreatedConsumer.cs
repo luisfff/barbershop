@@ -1,5 +1,4 @@
-﻿using System.Threading.Channels;
-using BarberShop.Common;
+﻿using BarberShop.Common;
 using BarberShopWorker.Application.Commands;
 using MediatR;
 using RabbitMQ.Client;

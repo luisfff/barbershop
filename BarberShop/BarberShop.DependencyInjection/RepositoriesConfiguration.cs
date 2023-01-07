@@ -1,5 +1,4 @@
 using BarberShop.Domain.Interfaces;
-using BarberShop.Infrastructure;
 using BarberShop.Infrastructure.Connection;
 using BarberShop.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;

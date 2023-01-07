@@ -22,7 +22,7 @@ namespace BarberShop.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromServices] GetBookingHandler handler, [FromQuery]long id)
+        public async Task<IActionResult> Get([FromServices] GetBookingHandler handler, [FromRoute]long id)
         {
             var result = await handler.Handle(id);
             return Ok(result);

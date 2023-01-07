@@ -1,31 +1,37 @@
 ﻿using BarberShop.Domain.Interfaces;
 using BarberShop.Domain.Models;
 using BarberShop.Infrastructure.Connection;
+using BarberShop.Infrastructure.Entities;
+using BarberShop.Infrastructure.Extensions;
 using Dapper;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace BarberShop.Infrastructure.Repositories
 {
     public class BookingRepository : IBookingRepository
     {
+        private const string RecordKey = "all_bookings";
         private readonly IConnectionProvider _connectionProvider;
+        private readonly IDistributedCache _distributedCache;
 
-        public BookingRepository(IConnectionProvider connectionProvider)
+        public BookingRepository(IConnectionProvider connectionProvider, IDistributedCache distributedCache)
         {
             _connectionProvider = connectionProvider;
+            _distributedCache = distributedCache;
         }
         public async Task<Booking> Get(long id)
         {
             using var connection = _connectionProvider.GetConnection();
 
-            var query = @"SELECT * FROM Booking AS b WHERE b.Id = @id";
+            const string query = @"SELECT b.Id, b.Userid, b.BookingDateTime FROM Bookings AS b WHERE b.Id = @id";
 
-            var bookingDto = await connection.QuerySingleAsync<BookingDto>(query, id);
+            var bookingEntity = await connection.QuerySingleAsync<BookingEntity>(query, new { id});
 
             var booking = new Booking
             {
-                Id = bookingDto.Id,
-                UserId = bookingDto.UserId,
-                BookingDateTime = bookingDto.BookingDateTime
+                Id = bookingEntity.Id,
+                UserId = bookingEntity.UserId,
+                BookingDateTime = bookingEntity.BookingDateTime
             };
 
            return booking;
@@ -35,11 +41,11 @@ namespace BarberShop.Infrastructure.Repositories
         {
             using var connection = _connectionProvider.GetConnection();
 
-            var query = @"SELECT * FROM Booking AS b WHERE b.UserId = @userId";
+            const string query = @"SELECT b.Id, b.Userid, b.BookingDateTime FROM Bookings AS b WHERE b.UserId = @userId";
 
-            var bookingsDto = await connection.QueryAsync<BookingDto>(query, userId);
+            var bookingEntity = await connection.QueryAsync<BookingEntity>(query, new {userId});
 
-            var bookings = bookingsDto.Select(x =>
+            var bookings = bookingEntity.Select(x =>
                 new Booking
                 {
                     Id = x.Id,
@@ -53,13 +59,29 @@ namespace BarberShop.Infrastructure.Repositories
 
         public async Task<IEnumerable<Booking>> GetAll()
         {
+            var cachedBookings = await GetAllBookingsCached();
+
+            if (cachedBookings is not null)
+            {
+                return cachedBookings;
+            }
+            var bookings = await GetAllInternal();
+
+            await SetAllBookingsCached(bookings);
+
+            return bookings;
+
+        }
+
+        private async Task<IEnumerable<Booking>> GetAllInternal()
+        {
             using var connection = _connectionProvider.GetConnection();
 
-            var query = @"SELECT * FROM Booking";
+            const string query = @"SELECT b.Id, b.Userid, b.BookingDateTime FROM Bookings AS b";
 
-            var bookingsDto = await connection.QueryAsync<BookingDto>(query);
+            var bookingEntity = await connection.QueryAsync<BookingEntity>(query);
 
-            var bookings = bookingsDto.Select(x =>
+            var bookings = bookingEntity.Select(x =>
                 new Booking
                 {
                     Id = x.Id,
@@ -70,7 +92,14 @@ namespace BarberShop.Infrastructure.Repositories
             return bookings;
         }
 
-        private record BookingDto(long Id, long UserId, DateTime BookingDateTime);
+        private async Task<IEnumerable<Booking>> GetAllBookingsCached()
+        {
+            return await _distributedCache.GetRecordAsync<IEnumerable<Booking>>(RecordKey);
+        }
 
+        private async Task SetAllBookingsCached(IEnumerable<Booking> bookingResults)
+        {
+            await _distributedCache.SetRecordAsync(RecordKey, bookingResults, TimeSpan.FromSeconds(10));
+        }
     }
 }
