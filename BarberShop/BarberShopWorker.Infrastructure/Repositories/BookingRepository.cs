@@ -21,7 +21,6 @@ namespace BarberShopWorker.Infrastructure.Repositories
 
             var bookingEntity = new BookingEntity
             {
-                Id = 200,
                 UserId = booking.UserId,
                 BookingDateTime = booking.BookingDateTime
             };
