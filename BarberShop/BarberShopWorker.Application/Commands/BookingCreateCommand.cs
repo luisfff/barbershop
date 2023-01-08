@@ -6,5 +6,6 @@ namespace BarberShopWorker.Application.Commands
     {
         public long UserId { get; set; }
         public DateTime BookingDateTime { get; set; }
+        public DateTime  CreatedAt { get; set; }
     }
 }

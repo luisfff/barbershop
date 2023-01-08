@@ -21,9 +21,10 @@ namespace BarberShopWorker.Application.Handlers
         {
             var booking = new Booking
             {
-                Id = -1,
+                Id = BookingId.Empty,
                 UserId = request.UserId,
-                BookingDateTime = request.BookingDateTime
+                BookingDateTime = request.BookingDateTime,
+                CreatedAt = request.CreatedAt,
             };
 
             await _bookingRepository.Create(booking);

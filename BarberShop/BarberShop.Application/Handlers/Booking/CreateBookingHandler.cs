@@ -15,7 +15,7 @@ namespace BarberShop.Application.Handlers.Booking
 
         public async Task Handle(BookingInputModel model)
         {
-            var @event = new BookingCreatedEvent(model.UserId, model.BookingTime);
+            var @event = new BookingCreatedEvent(model.UserId, model.BookingTime, DateTime.Now);
             _producer.Publish(@event);
         }
     }

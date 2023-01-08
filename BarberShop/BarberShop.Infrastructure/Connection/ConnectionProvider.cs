@@ -32,7 +32,10 @@ namespace BarberShop.Infrastructure.Connection
         {
             using var cmd = conn.CreateCommand();
 
-           cmd.CommandText = @"CREATE TABLE Bookings(Id INTEGER PRIMARY KEY AUTOINCREMENT, UserId BIGINT, BookingDateTime DATETIME)";
+           cmd.CommandText = @"CREATE TABLE Bookings(Id INTEGER PRIMARY KEY AUTOINCREMENT, 
+UserId BIGINT,
+BookingDateTime DATETIME,
+CreatedAt DATETIME)";
 
             cmd.ExecuteNonQuery();
         }
@@ -41,8 +44,8 @@ namespace BarberShop.Infrastructure.Connection
         {
             using var cmd = conn.CreateCommand();
 
-            cmd.CommandText = @"INSERT INTO Bookings(Id, UserId,BookingDateTime) VALUES(1,1,'2022-01-01')";
-            cmd.CommandText = @"INSERT INTO Bookings(Id, UserId,BookingDateTime) VALUES(2,2,'2022-06-02T11:18:25.000')";
+            cmd.CommandText = @"INSERT INTO Bookings(Id, UserId,BookingDateTime) VALUES(1,1,'2022-01-01','2022-01-01')";
+            cmd.CommandText = @"INSERT INTO Bookings(Id, UserId,BookingDateTime) VALUES(2,2,'2022-06-02T11:18:25.000','2022-06-02T11:18:25.000')";
             cmd.ExecuteNonQuery();
         }
     }

@@ -31,7 +31,8 @@ namespace BarberShop.Infrastructure.Repositories
             {
                 Id = bookingEntity.Id,
                 UserId = bookingEntity.UserId,
-                BookingDateTime = bookingEntity.BookingDateTime
+                BookingDateTime = bookingEntity.BookingDateTime,
+                CreatedAt = bookingEntity.CreatedAt
             };
 
            return booking;
@@ -50,7 +51,8 @@ namespace BarberShop.Infrastructure.Repositories
                 {
                     Id = x.Id,
                     UserId = x.UserId,
-                    BookingDateTime = x.BookingDateTime
+                    BookingDateTime = x.BookingDateTime,
+                    CreatedAt = x.CreatedAt
                 });  
 
             return bookings;
@@ -86,7 +88,8 @@ namespace BarberShop.Infrastructure.Repositories
                 {
                     Id = x.Id,
                     UserId = x.UserId,
-                    BookingDateTime = x.BookingDateTime
+                    BookingDateTime = x.BookingDateTime,
+                    CreatedAt = x.CreatedAt
                 });
 
             return bookings;
