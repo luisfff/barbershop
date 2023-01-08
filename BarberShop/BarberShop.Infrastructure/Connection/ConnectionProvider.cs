@@ -1,14 +1,24 @@
 ﻿using System.Data;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
 
 namespace BarberShop.Infrastructure.Connection
 {
     public class ConnectionProvider : IConnectionProvider
     {
+        private readonly IConfiguration _configuration;
+
+        public ConnectionProvider(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public IDbConnection GetConnection()
         {
             var firstRun = !File.Exists("barbershop.sqlite");
-            var conn = new SqliteConnection(@"Data Source=barbershop.sqlite;Pooling=true;");
+            var connectionString = _configuration.GetConnectionString("DbConnectionString");
+
+            var conn = new SqliteConnection(connectionString);
             conn.Open();
             if (firstRun)
             {

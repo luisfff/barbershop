@@ -4,5 +4,5 @@ namespace BarberShopWorker.Domain;
 
 public interface IBookingRepository
 {
-    Task<Booking> Create(Booking booking);
+    Task Create(Booking booking);
 }

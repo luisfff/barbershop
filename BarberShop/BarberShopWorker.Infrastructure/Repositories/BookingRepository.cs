@@ -15,13 +15,13 @@ namespace BarberShopWorker.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task<Booking> Create(Booking booking)
+        public async Task Create(Booking booking)
         {
             await using var ctx = await _context.CreateDbContextAsync();
 
             var bookingEntity = new BookingEntity
             {
-                Id = booking.Id,
+                Id = 200,
                 UserId = booking.UserId,
                 BookingDateTime = booking.BookingDateTime
             };
@@ -29,8 +29,6 @@ namespace BarberShopWorker.Infrastructure.Repositories
             ctx.Add(bookingEntity);
 
             await ctx.SaveChangesAsync();
-
-            return booking;
         }
     }
 }
