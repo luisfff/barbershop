@@ -1,7 +1,6 @@
 # Barber Shop Booking Api #
 
-## BarberShop api Project
-Overall design:
+## Overall design:
 
 ![title](Images/design.png)
  
