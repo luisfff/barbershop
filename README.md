@@ -1,15 +1,29 @@
 # Barber Shop Booking Api #
 
-## Barber Shop Api
 This project consists of a solution capable of reproducing small functionalities typical for a booking system.
 
-## Overall design:
+## Getting Started
+
+Clone the repository: git clone https://github.com/luisfff/barbershop
+
+Restore dependencies: dotnet restore
+
+Run containers with database, RabbitMQ and Redis cache: docker-compose up
+
+Run the API: dotnet run
+
+Access the API at http://localhost:5000
+
+## Overall Design
 
 ![title](Images/design.png)
 
-## Functionalities: 
-<p>User can search for bookings both by booking Id.<br>
-Users can get the list of all bookings.<br>
+## Functionalities
+
+User can search for bookings both by booking Id
+
+Users can get the list of all bookings
+
 Bookings can be created.
 
 ## Flows
