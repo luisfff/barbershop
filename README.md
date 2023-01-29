@@ -9,8 +9,8 @@ This project consists of a solution capable of reproducing small functionalities
 
 
 ## Functionalities: 
-User can search for bookings both by booking Id.
-Users can get the list of all bookings.
+<p>User can search for bookings both by booking Id.<br>
+Users can get the list of all bookings.<br>
 Bookings can be created.
 
 ## Flows
