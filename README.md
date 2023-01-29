@@ -15,7 +15,7 @@ Bookings can be created.
 
 ## Flows
 ### Create booking
-To create a booking we do call to a Post endpoint in web API, and a “bookingCreated” message is created and published to a “ booking requests” topic in the queue.The worker service subscribes to the “booking requests” topic and will consume messages from the queue, process them and save data to the database.
+To create a booking we do call to a Post endpoint in web API, and a “bookingCreated” message is created and published to a “ booking requests” topic in the queue. The worker service subscribes to the “booking requests” topic and will consume messages from the queue, process them and save data to the database.
 
 ### Search for booking
 To search for a booking, we do call to a Get endpoint in web API,  then we do a call to the Redis cache. When the first time a request is made a call will have to be made to the database to process the query (cache miss). Before giving back the result to the user, the result will be saved in the cache. 
