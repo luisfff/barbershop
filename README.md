@@ -1,11 +1,11 @@
 # Barber Shop Booking Api #
 
+## Barber Shop Api
+This project consists of a solution capable of reproducing small functionalities typical for a booking system.
+
 ## Overall design:
 
 ![title](Images/design.png)
- 
-This project consists of a solution capable of reproducing small functionalities typical for a booking system.
-
 
 ## Functionalities: 
 <p>User can search for bookings both by booking Id.<br>
