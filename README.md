@@ -1,6 +1,4 @@
-# README #
-
-Barber Shop Booking Api
+# Barber Shop Booking Api #
 
 ## BarberShop api Project
 Overall design:
