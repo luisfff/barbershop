@@ -6,11 +6,11 @@ This project consists of a solution capable of reproducing small functionalities
 
 Clone the repository: git clone https://github.com/luisfff/barbershop
 
-Restore dependencies: dotnet restore
+Restore dependencies: `dotnet restore`
 
-Run containers with database, RabbitMQ and Redis cache: docker-compose up
+Run containers with database, RabbitMQ and Redis cache: `docker-compose up`
 
-Run the API: dotnet run
+Run the API: `dotnet run`
 
 Access the API at http://localhost:5000
 
