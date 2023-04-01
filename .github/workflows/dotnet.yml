@@ -1,7 +1,4 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: BarberShop CI/CD
 
 on:
   push:
@@ -11,22 +8,33 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Find project files
-      run: find . -type f -name "*.csproj"
-    - name: List project files
-      run: ls **/*.csproj
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Find project files
+        run: find . -type f -name "*.csproj"
+      - name: List project files
+        run: ls **/*.csproj
+      - name: Build all projects
+        run: dotnet build **/*.csproj -c Release
+      - name: Build API
+        run: dotnet build ./BarberShop.Api/BarberShop.Api.csproj -c Release
+      - name: Build Worker
+        run: dotnet build ./BarberShopWorker/BarberShopWorker.csproj -c Release
+      - name: Build API Docker image
+        run: docker build -t barbershop-api ./BarberShop.Api
+      - name: Build Worker Docker image
+        run: docker build -t barbershop-worker ./BarberShopWorker
+      - name: Start RabbitMQ container
+        run: docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management-alpine
+      - name: Start Redis container
+        run: docker run -d --name cache -p 6379:6379 redis:6.2-alpine redis-server --save 20 1 --loglevel warning
+      - name: Start API container
+        run: docker run -d --name barbershop-api --link rabbitmq:rabbitmq --link cache:cache -p 502:80 -p 5002:443 barbershop-api
+      - name: Start Worker container
+        run: docker run -d --name barbershop-worker --link rabbitmq:rabbitmq barbershop-worker
