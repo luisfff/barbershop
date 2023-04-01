@@ -18,10 +18,6 @@ jobs:
           dotnet-version: 7.0.x
       - name: Find project files
         run: find . -type f -name "*.csproj"
-      - name: List project files
-        run: ls **/*.csproj
-      - name: Build all projects
-        run: dotnet build **/*.csproj -c Release
       - name: Build API
         run: dotnet build ./BarberShop.Api/BarberShop.Api.csproj -c Release
       - name: Build Worker
