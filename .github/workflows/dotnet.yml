@@ -2,69 +2,31 @@ name: BarberShop CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-start:
     runs-on: ubuntu-latest
 
-    services:
-      rabbitmq:
-        image: rabbitmq:3-management-alpine
-        env:
-          rabbitmq_default_user: guest
-          rabbitmq_default_pass: guest
-        ports:
-          # AMQP protocol port
-          - 5672:5672
-          # HTTP management UI
-          - 15672:15672
-        # healthcheck:
-          # test: ["CMD", "rabbitmqctl", "node_health_check"]
-          # interval: 30s
-          # timeout: 10s
-          # retries: 5
-        volumes:
-          - /var/lib/rabbitmq:/var/lib/rabbitmq
-        # networks:
-          # barbershop_net:
-            # aliases:
-              # - rabbitmq
-
-      cache:
-        image: redis:6.2-alpine
-        ports:
-          - 6379:6379
-        # command: redis-server --save 20 1 --loglevel warning
-        volumes:
-          - cache:/data
-        # networks:
-          # barbershop_net:
-            # aliases:
-              # - cache
-
-    # volumes:
-      # cache:
-
-    # networks:
-      # barbershop_net:
-        # driver: bridge
-
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build API Docker Image
-        run: docker build -t barbershop-api BarberShop.Api/BarberShop.Api
+      - name: Build API Docker image
+        run: docker build -t barbershop-api ./BarberShop.Api
 
-      - name: Build Worker Docker Image
+      - name: Build Worker Docker image
         run: docker build -t barbershop-worker ./BarberShopWorker
 
-      - name: Start Services
-        run: docker-compose up -d
+      - name: Start RabbitMQ container
+        run: docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management-alpine
 
-      - name: Run Tests
-        run: docker-compose exec api dotnet test
+      - name: Start Redis container
+        run: docker run -d --name cache -p 6379:6379 redis:6.2-alpine redis-server --save 20 1 --loglevel warning
 
-      - name: Stop Services
-        run: docker-compose down
+      - name: Start API container
+        run: docker run -d --name barbershop-api --link rabbitmq:rabbitmq --link cache:cache -p 502:80 -p 5002:443 barbershop-api
+
+      - name: Start Worker container
+        run: docker run -d --name barbershop-worker --link rabbitmq:rabbitmq barbershop-worker
