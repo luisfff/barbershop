@@ -25,7 +25,7 @@ jobs:
       - name: Build API Docker image
         run:  docker build -f BarberShop.Api/Dockerfile -t barbershop-api .
       - name: Build Worker Docker image
-        run: docker build -t barbershop-worker ./BarberShopWorker
+        run:  docker build -f BarberShopWorker/Dockerfile -t barbershop-worker .
       - name: Start RabbitMQ container
         run: docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management-alpine
       - name: Start Redis container
