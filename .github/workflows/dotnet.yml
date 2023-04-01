@@ -43,8 +43,8 @@ jobs:
             # aliases:
               # - cache
 
-    volumes:
-      cache:
+    # volumes:
+      # cache:
 
     # networks:
       # barbershop_net:
