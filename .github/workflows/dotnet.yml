@@ -18,6 +18,9 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
+      - name: Build all projects
+        run: dotnet build **/*.csproj -c Release
+        
       - name: Build API
         run: dotnet build ./BarberShop.Api/BarberShop.Api.csproj -c Release
 
