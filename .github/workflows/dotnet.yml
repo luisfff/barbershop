@@ -55,7 +55,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build API Docker Image
-        run: docker build -t barbershop-api ./BarberShop.Api
+        run: docker build -t barbershop-api BarberShop.Api/BarberShop.Api
 
       - name: Build Worker Docker Image
         run: docker build -t barbershop-worker ./BarberShopWorker
