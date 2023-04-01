@@ -26,10 +26,10 @@ jobs:
           # retries: 5
         volumes:
           - /var/lib/rabbitmq:/var/lib/rabbitmq
-        networks:
-          barbershop_net:
-            aliases:
-              - rabbitmq
+        # networks:
+          # barbershop_net:
+            # aliases:
+              # - rabbitmq
 
       cache:
         image: redis:6.2-alpine
@@ -38,17 +38,17 @@ jobs:
         command: redis-server --save 20 1 --loglevel warning
         volumes:
           - cache:/data
-        networks:
-          barbershop_net:
-            aliases:
-              - cache
+        # networks:
+          # barbershop_net:
+            # aliases:
+              # - cache
 
     volumes:
       cache:
 
-    networks:
-      barbershop_net:
-        driver: bridge
+    # networks:
+      # barbershop_net:
+        # driver: bridge
 
     steps:
       - name: Checkout Code
