@@ -23,7 +23,7 @@ jobs:
       - name: Build Worker
         run: dotnet build ./BarberShopWorker/BarberShopWorker.csproj -c Release
       - name: Build API Docker image
-        run: docker build -t barbershop-api ./BarberShop.Api/BarberShop.Api
+        run: docker build -t barbershop-api ./BarberShop.Api
       - name: Build Worker Docker image
         run: docker build -t barbershop-worker ./BarberShopWorker
       - name: Start RabbitMQ container
