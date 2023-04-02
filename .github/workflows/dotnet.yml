@@ -39,13 +39,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: barbershop-api
-          path: ./BarberShop.Api/bin/Release/net6.0/publish
+          path: ./BarberShop.Api/bin/Release/net7.0
           
       - name: Upload Worker artifact
         uses: actions/upload-artifact@v2
         with:
           name: barbershop-worker
-          path: ./BarberShopWorker/bin/Release/net6.0/publish
+          path: ./BarberShopWorker/bin/Release/net7.0
 
   deploy:
     runs-on: windows-latest
