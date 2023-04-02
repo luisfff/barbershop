@@ -34,3 +34,47 @@ jobs:
         run: docker run -d --name barbershop-api --link rabbitmq:rabbitmq --link cache:cache -p 502:80 -p 5002:443 barbershop-api
       - name: Start Worker container
         run: docker run -d --name barbershop-worker --link rabbitmq:rabbitmq barbershop-worker
+        
+      - name: Upload API artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: barbershop-api
+          path: ./BarberShop.Api/bin/Release/net6.0/publish
+          
+      - name: Upload Worker artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: barbershop-worker
+          path: ./BarberShopWorker/bin/Release/net6.0/publish
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download API artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: barbershop-api
+          
+      - name: Download Worker artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: barbershop-worker
+  
+      - name: Display Appsettings
+        run: cat appsettings.json
+        
+      - name: Deploy barber shop api to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'barber-shop-app'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
+    env:
+      DOTNET_ROOT: 'prod'
