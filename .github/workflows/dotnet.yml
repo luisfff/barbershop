@@ -59,6 +59,16 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: barbershop-api
+          path: ./artifacts/barbershop-api.zip
+          
+      - name: Deploy barber shop api to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'barber-shop-app'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_API }}
+          package: ./artifacts/barbershop-api.zip
           
       - name: Download Worker artifact from build job
         uses: actions/download-artifact@v2
@@ -68,13 +78,5 @@ jobs:
       - name: Display Appsettings
         run: cat appsettings.json
         
-      - name: Deploy barber shop api to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'barber-shop-app'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: .
     env:
       DOTNET_ROOT: 'prod'
