@@ -61,6 +61,11 @@ jobs:
           name: barbershop-api
           path: ./artifacts/barbershop-api.zip
           
+      - name: Display contents of downloaded artifact
+        run: |
+         unzip -l ./artifacts/barbershop-api.zip
+         ls -al ./artifacts/barbershop-api
+         
       - name: Deploy barber shop api to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
